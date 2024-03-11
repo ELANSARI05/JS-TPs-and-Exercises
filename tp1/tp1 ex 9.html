@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    tr,td {
+        border: solid;
+    }
+</style>
+<body>
+     <table id="tab">
+        
+     </table>
+
+    <script>
+        var X= prompt("Donner le nombre de lgines");
+        var Y =prompt("Donner le nombre de colonnes");
+        X =parseInt(X);Y =parseInt(Y);
+        var  html ="<table>";
+        for(let i=0;i<X;i++){
+            html += "<tr>"
+            for(let j =0;j<Y;j++)
+            html += "<td> A </td>";
+        }
+        var out =document.getElementById("tab");
+        out.innerHTML =html;
+    </script>
+</body>
+</html>

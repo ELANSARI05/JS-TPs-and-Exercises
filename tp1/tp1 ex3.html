@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="welcomeMessage"></div>
+    <script>
+
+       var budget = 120;
+       var achats = 150;
+       budget =parseInt(budget);achats =parseInt(achats);
+       var ourmes =document.getElementById("welcomeMessage")
+       if(budget >= achats )
+       ourmes.innerHTML = " Vous pouvez prendre ces achats";
+       else
+       ourmes.innerHTML = " Vous pouvez pas prendre ces achats, vous avez besoin de : " + (achats-budget);
+    </script>
+</body>
+</html>
