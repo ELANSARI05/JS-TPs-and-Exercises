@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div  style="border: solid;width: 400px;height: 30px;">
+            <input type="number" id="a" placeholder="Saisir le premier nombre">
+
+        </div>
+        <div  style="border: solid;width: 400px;height: 30px;margin-left: 10px;">
+            <input type="number" id="b" placeholder="Saisir le deuxieme nombre">
+
+        </div>
+        <div>
+            <select name="Choisir" id="operation" >
+                <option value="">Choisir l'operation</option>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">x</option>
+                <option value="/">/</option>
+            </select>
+        </div>
+        <span id="res"></span>
+        <button onclick="func()">Calculer</button>
+
+    </div>
+    <div id="x"></div>
+    <div id="y"></div>
+    <script>
+         var x = document.getElementById("a");
+        var y = document.getElementById("b");
+        var c;
+
+        function func(){
+            var g = document.getElementById("x");
+            var j = document.getElementById("y");
+            var a = parseInt(x.value);
+            if(isNaN(a))
+            g.innerHTML ="Vous devez donner un nombre pour a";
+            else
+            g.innerHTML ="";
+            var b = parseInt(y.value);
+            if(isNaN(b))
+            j.innerHTML ="Vous devez donner un nombre pour b";
+            else
+            j.innerHTML ="";
+            let op =document.getElementById("operation");
+            if(op.value== "+")
+            c =a+b;
+            else if(op.value== "-")
+            c =a-b;
+            else if(op.value== "*")
+            c =a*b;
+            else if(op.value== "/")
+            c =a/b;
+            else
+            g.innerHTML ="Vous devez choisir une operation";
+            let z =document.getElementById("res");
+            z.innerHTML = c;
+
+
+            
+            
+          
+       }
+    </script>
+</body>
+</html>

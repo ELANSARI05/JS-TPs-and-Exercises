@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div  style="border: solid;width: 400px;height: 30px;">
+            <input type="number" id="a">
+        </div>
+        <div style="width: 20px;">
+            <p style="margin-top: 50%;margin-left: 25%;">+</p>
+        </div>
+        <div  style="border: solid;width: 400px;height: 30px;">
+            <input type="number" id="b">
+
+        </div>
+        <div style="width: 20px;display: flex;">
+            <p style="margin-top: 50%;margin-left: 25%;">=</p>
+        </div>
+        <span id="res"></span>
+        <button style="margin-left: 5px;" onclick="func()">Calculer</button>
+
+    </div>
+    <script>
+       function func(){
+         let x = document.getElementById("a");
+         let y = document.getElementById("b");
+         var a = parseInt(x.value);
+         var b = parseInt(y.value);
+         var c =a+b;
+         let z =document.getElementById("res");
+         z.innerHTML = c;
+       }
+    </script>
+</body>
+</html>
