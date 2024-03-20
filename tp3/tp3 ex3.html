@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="" id="myForm">
+        <label for="">Code Etudaint</label>
+        <input id="code" type="text" required><br><br>
+        <label for="">Nom</label>
+        <input id="nom" type="text" required><br><br>
+        <label for="">Prenom</label>
+        <input id="prenom" type="text" required><br><br>
+        <label for="">Semestre</label>
+        <select name="" id="sem" required>
+            <option value="" selected disabled>Choisir le Semestre</option>
+            <option value="s1">Semestre 1</option>
+            <option value="s2">Semestre 2</option>
+        </select><br><br>
+        <p><b>Notes des modules</b></p>
+        <label for="">Module 1</label>
+        <input id="mod1" type="number" required><br>
+        <label for="">Module 2</label>
+        <input id="mod2" type="number" required><br>
+        <label for="">Module 3</label>
+        <input id="mod3" type="number" required><br>
+        <label for="">Module 4</label>
+        <input id="mod4" type="number" required><br>
+        <label for="">Module 5</label>
+        <input id="mod5" type="number" required><br>
+        <label for="">Module 6</label>
+        <input id="mod6" type="number" required><br><br>
+        <input type="submit" value="Valider">
+    </form>
+    <table id="tabl"></table>
+    <script>
+        var c=0;
+        var code =document.getElementById("code");
+        var nom =document.getElementById("nom");
+        var prenom =document.getElementById("prenom");
+        var sem =document.getElementById("sem");
+        var mod1 =document.getElementById("mod1");
+        var mod2 =document.getElementById("mod2");
+        var mod3 =document.getElementById("mod3");
+        var mod4 =document.getElementById("mod4");
+        var mod5 =document.getElementById("mod5");
+        var mod6 =document.getElementById("mod6");
+        var html ="<table>";
+        var tabl = document.getElementById("tabl");
+        var arr=[];
+        var arr1=[];
+        var r=0;
+        var moy=0;
+        var count=0;
+        var juge=0;
+        var dec;
+        document.getElementById("myForm").addEventListener('submit',function(event){
+            event.preventDefault();
+            for(let i=0;i<arr.length;i++){
+                if(arr[i]==parseInt(code.value)){
+                    r =1;
+                    alert("Etudiant existant !");
+                }
+            }
+            if(c==0){
+                html +="<tr><th>Code Etudiant</th><th>Nom</th><th>Prenom</th><th>Semestre</th><th>Module 1</th><th>Module 2</th><th>Module 3</th><th>Module 4</th><th>Module 5</th><th>Module 6</th><th>Moyenne</th><th>Decision</th></tr>";
+                c=1;
+            }
+            if(r==0){
+            arr1.push(mod1);arr1.push(mod2);arr1.push(mod3);arr1.push(mod4);arr1.push(mod5);arr1.push(mod6);
+            html+= "<tr><td>"+code.value+"</td><td>"+nom.value+"</td><td>"+prenom.value+"</td><td>"+sem.value+"</td><td>"+mod1.value+"</td><td>"+mod2.value+"</td><td>"+mod3.value+"</td><td>"+mod4.value+"</td><td>"+mod5.value+"</td><td>"+mod6.value+"</td>";
+            for(let i=0;i<6;i++)
+            moy += parseInt(arr1[i].value);
+            for(let i=0;i<6;i++){
+                if(parseFloat(arr1[i].value) < 12)
+                count++;
+                if(parseFloat(arr1[i].value)<8){
+                    juge =1;
+                    break;
+                }
+            }
+            if(juge==1 || count >= 3 || moy/6 < 12)
+            dec = "Semestre non valide";
+            else if (moy/6 >= 12)
+            dec = "Semestre valide";
+            html += "<td>"+moy/6+"</td><td>"+dec+"</td></tr>";
+            moy =0;
+            count =0;
+            juge =0;
+            arr.push(code.value);
+            tabl.innerHTML = html;
+        }
+            else
+            r=0;
+        })
+    </script>
+</body>
+</html>

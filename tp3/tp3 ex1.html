@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="myForm">
+        <label for="">Nom : </label>
+        <input id="nom" type="text" required><br>
+        <label for="">Prenom : </label>
+        <input id="prenom" type="text" required><br>
+        <label for="">E-mail : </label>
+        <input id="email" type="text" required><br>
+        <label for="">Mot de passe : </label>
+        <input id="mdp" type="password" required><br>
+        <label for="">Resaisir le mot de passe : </label>
+        <input id="mdp1" type="password" required ><br>
+        <label for="">Telephone : </label>
+        <input id="tel" type="number" required><br>
+        <label for="">Langue : </label>
+        <select name="" id="langue" required>
+            <option value="" selected disabled>Choose the language</option>
+            <option value="Arabe">Arabe</option>
+            <option value="Francais">Francais</option>
+            <option value="English">English</option>
+        </select><br>
+        <label for="">Commentaire : </label>
+        <textarea name="" id="com" cols="30" rows="10" required></textarea><br>
+        <input type="submit" value="Valider"><input type="reset" name="" id="" value="annuler">
+
+    </form>
+    <div id="motd">
+
+    </div>
+    <div id="summary" style="border: groove; width: 40%;">
+    </div>
+    <script>
+         var nom =document.getElementById("nom"),
+            prenom=document.getElementById("prenom"),
+            email =document.getElementById("email"),
+            mdp =document.getElementById("mdp"),
+            mdp1 =document.getElementById("mdp1"),
+            tel =document.getElementById("tel"),
+            langue=document.getElementById("langue"),
+            com =document.getElementById("com"),
+            hh=document.getElementById("hh");
+            var summary =document.getElementById("summary");
+            document.getElementById("myForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent the default form submission behavior
+                // You can perform your validation or processing logic here
+                if(mdp.value != mdp1.value){
+                let motd =document.getElementById("motd");
+                mdp.value="";
+                mdp1.value="";
+                motd.innerHTML= "Les mots de passe ne correspondent pas";
+                summary.innerHTML ="";
+            }
+            else{
+                motd.innerHTML="";
+            summary.innerHTML= "<p><b>Recapitulatif</b></p><b>Votre nom et prenom</b> :"+nom.value+" "+prenom.value+"<br> <b>Votre email  :</b>"+email.value+"<br> <b>Numero de telephone: </b>"+tel.value+"<br><b>Langue: </b>"+langue.value+"<br><b>Vos commentaires : </b>"+com.value;
+            }
+        });
+        document.getElementById("myForm").addEventListener("reset", function(event) {
+                summary.innerHTML ="";
+        });
+    </script>
+</body>
+</html>

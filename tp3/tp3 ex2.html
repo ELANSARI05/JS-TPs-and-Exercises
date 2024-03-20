@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label, input, button {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"], button {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button{
+            background-color: rgb(66, 66, 206);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #ddd;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <label for="">Dimension du tableau</label><br>
+    <input id="dim" type="number"><br>
+    <label for="">La valeur minimale</label><br>
+    <input id="min" type="number"><br>
+    <label for="">La valeur maximale</label><br>
+    <input id="max" type="number"><br>
+    <button onclick="generate()">Generer  un tableau</button>
+    <table id="tabl">
+
+    </table>
+</body>
+<script>
+    function getRandomInteger(min, max) {
+        min = Math.ceil(min); // Round up min to the nearest integer
+        max = Math.floor(max); // Round down max to the nearest integer
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    function generate(){
+        var d,min,max;
+        let a =1;
+        d = document.getElementById("dim").value;
+        min = document.getElementById("min").value;
+        max = document.getElementById("max").value;
+        if(isNaN(parseInt(d)) || isNaN(parseInt(min))|| isNaN(parseInt(max)) || parseInt(min)>parseInt(max))
+        alert("Error !!");
+        else{
+            var html = "<table>";
+            while(d>0){
+                html +="<tr>"
+                for(let i=0;i<10;i++){
+                    a = getRandomInteger(min,max);
+                    html +="<td>"+a+"</td>";
+                    d--;
+                    if(d==0)
+                    break;
+                }
+                html += "</tr>";
+            }
+            var tab = document.getElementById("tabl");
+            tab.innerHTML =html;
+        }
+
+        
+    }
+</script>
+</html>
