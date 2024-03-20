@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="welcomeMessage"></div>
+    <script>
+
+        var a =prompt("Valeur de a");
+        while(isNaN(Number(a)))
+        a = prompt("Une valeur numerique de a !");
+        var b =prompt("Valeur de b");
+        while(isNaN(Number(b)))
+        b = prompt("Une valeur numerique de b !");
+        var c =prompt("Valeur de c");
+        while(isNaN(Number(c)))
+        c = prompt("Une valeur numerique de c !");
+        if(Number(a)==Number(b)){
+            if(Number(b)==Number(c))
+            document.write("Les trois variables sont identiques.");
+            else
+            document.write("Deux des variables sont de valeurs égales.");
+        }
+        else if(Number(b)==Number(c) || Number(a)==Number(c))
+        document.write("Deux des variables sont de valeurs égales.");
+        else
+        document.write("Les trois variables sont différentes.");
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://www.google.com/?hl=chrome" id="deny" >Link</a>
+    <div id="elm" style="border: solid;width: 100px;">Element div</div>
+    <div id="menu">
+
+    </div>
+
+    <script>
+        let a=0;
+            document.getElementById("deny").addEventListener('click',function(event){
+                event.preventDefault();
+                alert("Redirection interdite");
+            })
+            document.getElementById("elm").addEventListener('click',function(event){
+                var x =document.getElementById("menu");
+                x.innerHTML="JS<br>Html/css<br>Vue<br>";
+                document.getElementById("elm").addEventListener('mouseout',function(event){
+                x.innerHTML="";
+                })
+                
+            })
+    </script>
+    
+</body>
+</html> 
