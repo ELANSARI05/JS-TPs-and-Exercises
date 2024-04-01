@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #url{
+            input{
+                margin-top: 20px;
+            }
+        }
+        #container {
+            background-color: rgb(3, 3, 46);
+            color: white;
+            width: 50%;
+            margin-left: 30%;
+            padding: 8px;
+        }
+        select, input {
+            width: 100%;
+            height: 30px;
+        }
+        .option-container {
+            display: flex;
+            align-items: center;
+        }
+        .option-container input[type="radio"] {
+            margin-right: 10px;
+        }
+        #next {
+            margin-top: 10px;
+            margin-right: 0px;
+            background-color: blue;
+            color: black;
+            width: 90px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: rgb(195, 195, 230);color: black;border: groove;margin-left: 30%;" id="url">
+
+    </div>
+    <div id="container">
+    <p style="font-size: 20px;margin-left: 0px;"><b>API Helper</b></p>
+    <form action="" id="myform">
+        <label for="">Number of questions</label><br>
+        <input type="number" id="number"><br><br>
+        <label for="">Select Category</label><br>
+        <select name="" id="cat">
+            <option value="any" selected disabled>Any category</option>
+            <option value="9">General Knowledge</option><option value="10">Entertainment: Books</option><option value="11">Entertainment: Film</option><option value="12">Entertainment: Music</option><option value="13">Entertainment: Musicals &amp; Theatres</option><option value="14">Entertainment: Television</option><option value="15">Entertainment: Video Games</option><option value="16">Entertainment: Board Games</option><option value="17">Science &amp; Nature</option><option value="18">Science: Computers</option><option value="19">Science: Mathematics</option><option value="20">Mythology</option><option value="21">Sports</option><option value="22">Geography</option><option value="23">History</option><option value="24">Politics</option><option value="25">Art</option><option value="26">Celebrities</option><option value="27">Animals</option><option value="28">Vehicles</option><option value="29">Entertainment: Comics</option><option value="30">Science: Gadgets</option><option value="31">Entertainment: Japanese Anime &amp; Manga</option><option value="32">Entertainment: Cartoon &amp; Animations</option>		</select>
+        </select><br><br>
+        <label for="">Select Difficulty</label><br>
+        <select name="" id="dif">
+        <option value="any">Any Difficulty</option>
+			<option value="easy">Easy</option>
+			<option value="medium">Medium</option>
+			<option value="hard">Hard</option>
+        </select><br><br>
+        <label for="">Select Type</label><br>
+        <select name="trivia_type" id="type">&gt;
+			<option value="any">Any Type</option>
+			<option value="multiple">Multiple Choice</option>
+			<option value="boolean">True / False</option>
+		</select><br><br>
+        <label for="">Select Encoding</label><br>
+        <select name="trivia_encode" id="enc">&gt;
+			<option value="default">Default Encoding</option>
+			<option value="urlLegacy">Legacy URL Encoding</option>
+			<option value="url3986">URL Encoding (RFC 3986)</option>
+			<option value="base64">Base64 Encoding</option>
+		</select><br><br>
+        <button style="width: 100%;text-align: center;height: 40px;color: white;background-color: black;font-size: 20px;" type="submit">Generate API URL</button>
+    </form>
+    <div id="content"></div>
+</div>
+<script>
+        var number = document.getElementById("number");
+        var c=1;
+        var cat = document.getElementById("cat");
+        var dif = document.getElementById("dif");
+        var type = document.getElementById("type");
+        var enc = document.getElementById("enc");
+        var form1 = document.getElementById("myform");
+        var api="https://opentdb.com/api.php?";
+        var lien = document.getElementById("url");
+        var contentDiv = document.getElementById("content");
+        var cont =document.getElementById("container");
+        var count =1;
+        var html;
+        var radio;
+        var questions = [];
+        var total_mark =0;
+
+        function displayQuestion(questionData) {
+            html = "<p>Q" + count + ": " + questionData.question;
+            for(let i = 0; i < questionData.incorrect_answers.length; i++){
+                html += '<input type="radio" id="1" name="1"><label>' + questionData.incorrect_answers[i] + '</label><br>';
+            }
+            html += '<input type="radio" id="correct" name="1"><label>' + questionData.correct_answer + '</label><br>';
+            html += '<button id="next" onclick="nextQuestion()">Next</button>';
+            lien.innerHTML = html;
+            count++;
+        }
+
+        function nextQuestion() {
+            const selectedOption = checkSelectedOption(); // Check the selected radio button
+            if (selectedOption === 'correct') {
+                total_mark++; // Increment total_mark if correct answer selected
+            }
+            if (questions.length > 0) {
+                const nextQuestionData = questions.shift();
+                displayQuestion(nextQuestionData);
+            } else {
+                // Display total grade at the end
+                if(total_mark==number.value)
+                lien.innerHTML = "<p><b>Fin de QCM : Score final : "+total_mark+"/"+number.value+", BRAVO!!</b><p>";
+                else
+                lien.innerHTML = "<p><b>Fin de QCM : Score final : "+total_mark+"/"+number.value+"</b><p>";
+            }
+        }
+
+        // Function to check the selected radio button
+        function checkSelectedOption() {
+            const radioButtons = document.querySelectorAll('input[type="radio"][name="1"]');
+            let checkedOption = '';
+            radioButtons.forEach(radio => {
+                if (radio.checked) {
+                    checkedOption = radio.id;
+                }
+            });
+            return checkedOption;
+        }
+
+        form1.addEventListener('submit', function(event){
+            event.preventDefault();
+            api+="amount="+number.value;
+            if(cat.value != "any")
+                api+="&category="+cat.value;
+            fetch(api).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                questions = data.results;
+                cont.remove();
+                // Call displayQuestion() to show the first question
+                nextQuestion(); // Display the first question
+            })
+            .catch(error => {
+                console.error('There was a problem with your fetch operation:', error);
+            });
+        })
+</script>
+</body>
+</html>
