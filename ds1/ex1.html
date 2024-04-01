@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="myform" style="text-align: center;width: 50%;margin-left: 20%; background-color: rgb(225, 209, 240);">
+        <p style="font-size: 80px;"><b>Formulaire</b></p>
+        <label for="">Identifiant</label>
+        <input type="text" name="" id="id" placeholder="Identifiant" required><br><br>
+        <label for="">Prenom</label>
+        <input type="text" name="" id="prenom" placeholder="Prenom" required><br><br>
+        <label for="">Nom</label>
+        <input type="text" name="" id="nom" placeholder="Nom" required><br><br>
+        <label for="">Age</label>
+        <input type="number" name="" id="age" placeholder="Age" required><br><br>
+        <label for="">Mot de passe : </label>
+        <input id="mdp" type="password" required><br><br>
+        <label for="">Resaisir le mot de passe : </label>
+        <input id="mdp1" type="password" required ><br><br>
+        <input type="checkbox"   name="" id="cgu" value="1" required ><label for="">J'accepte les CGU </label><br><br>
+        <input type="submit" name="" id="">
+    </form>
+    <div id="infos">
+    </div>
+    <script>
+        var age= document.getElementById("age");
+        var id= document.getElementById("id");
+        var prenom= document.getElementById("prenom");
+        var nom= document.getElementById("nom");
+        var mdp= document.getElementById("mdp");
+        var mdp1= document.getElementById("mdp1");
+        var cgu= document.getElementById("cgu");
+        var infos = document.getElementById("infos");
+        var form = document.getElementById("myform");
+        form.addEventListener('submit',function(event){
+            event.preventDefault();
+            if(!isNaN(parseInt(age.value)) && parseInt(age.value) >= 18 && mdp.value.length >= 8 && string(id) && mdp.value == mdp1.value){
+                infos.innerHTML="<p><b>Tetxe d'aide</b></p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis in minus ipsa, maxime quia delectus voluptatem voluptas officia soluta? Laborum culpa, inventore quam laboriosam explicabo cupiditate at minus ratione sequi? <p><b>mise en evidence</b></p>         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab consequuntur dolore perferendis id fugit sapiente maxime. Aut in pariatur, deleniti quidem voluptate voluptatum nesciunt alias expedita, non facere veniam iste.";
+            }
+        })
+        function string(mot){
+            var c=0;
+            if(mot.value.length < 12){
+                for(let i=0;i<mot.value.length;i++){
+                c++;
+                if(!isNaN(parseInt(mot.value.charAt(i)))){
+                    return 0;
+                    break;
+                }                
+            }
+            if(c== mot.value.length)
+            return 1;
+            }
+            else
+            return 0;
+        }
+    </script>
+</body>
+</html>

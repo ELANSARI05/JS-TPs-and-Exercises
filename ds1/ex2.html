@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <p style="font-size: 30px;"><b>Gestionnnaire taches hebdomadaire</b></p>
+    <label style="font-size: 20px;" for="">Il est actuellement <span id="hour"></span></label><br><br>
+    <form action="" id="myform">
+        <ul type="cuba" id="cuba"></ul>
+        <input onclick="func(event)" type="submit" name="" value="+" id="">
+    </form>
+    <script>
+        var d = new Date();
+        var c=0;
+        var hour = d.getHours();
+        var min =d.getMinutes();
+        var sec =d.getSeconds();
+        var date = document.getElementById("hour");
+        setInterval(function() {
+                        d = new Date();
+                        hour = d.getHours();
+                        min =d.getMinutes();
+                        sec = d.getSeconds();
+                        date.innerHTML = hour+":"+min+":"+sec;
+        },1000);
+        var ligne = document.getElementById("cuba");
+        var html;
+        function func(event){
+            event.preventDefault();
+            ligne.innerHTML += '<li id="'+c+'"><input type="checkbox"><input style="width: 30px;" type="number" name="" id="'+(-c)+'"><span>:</span><input style="width: 30px;" type="number" id=""> <input id="'+20*c+'" type="text"><input onclick="func1(event)" type="submit" name="" value="-" id="'+c+'"></li><br>';
+            c++;
+            console.log(c);
+
+        }
+        function func1(event){
+            event.preventDefault();
+            var t = event.target.id.toString();
+            elm = document.getElementById(t);
+            elm.innerHTML = "";
+        }
+    </script>
+</body>
+</html>
