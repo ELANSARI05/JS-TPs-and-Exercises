@@ -1,124 +1,60 @@
 {
   "emplois": [
     {
+      "id": "1",
+      "titre": "Software Engineer",
+      "description": "Develops software applications and systems.",
+      "lieu": "Remote",
+      "salaire": "90000",
+      "type": "Full-time"
+    },
+    {
+      "id": "2",
+      "titre": "Data Scientist",
+      "description": "Analyzes and interprets complex data to inform business decisions.",
+      "lieu": "New York City",
+      "salaire": "100000",
+      "type": "Remote or On-site"
+    },
+    {
+      "id": "3",
+      "titre": "Network Administrator",
+      "description": "Manages and maintains computer networks within an organization.",
+      "lieu": "Chicago",
+      "salaire": "80000",
+      "type": "Full-time"
+    },
+    {
       "id": "4",
-      "titre": "Chef de projet informatique",
-      "description": "Coordination et gestion de projets informatiques.",
-      "lieu": "Berlin, Allemagne",
-      "salaire": 60000,
-      "type": "Temps plein"
+      "titre": "Web Developer",
+      "description": "Designs and develops websites and web applications.",
+      "lieu": "San Francisco",
+      "salaire": "70000",
+      "type": "Remote or On-site"
     },
     {
       "id": "5",
-      "titre": "Ingénieur en logiciel embarqué",
-      "description": "Développement de logiciels pour des systèmes embarqués.",
-      "lieu": "Tokyo, Japon",
-      "salaire": 75000,
-      "type": "Temps plein"
-    },
-    {
-      "id": "6",
-      "titre": "Concepteur graphique",
-      "description": "Création d'éléments graphiques pour des projets variés.",
-      "lieu": "Los Angeles, USA",
-      "salaire": 55000,
-      "type": "Temps plein"
+      "titre": "Cybersecurity Analyst",
+      "description": "Protects computer systems and networks from cyber threats.",
+      "lieu": "Washington, D.C.",
+      "salaire": "85000",
+      "type": "Full-time"
     },
     {
       "id": "7",
-      "titre": "Spécialiste en marketing numérique",
-      "description": "Planification et mise en œuvre de stratégies de marketing en ligne.",
-      "lieu": "Sydney, Australie",
-      "salaire": 65000,
-      "type": "Temps plein"
+      "titre": "Artificial Intelligence Engineer",
+      "description": "Designs and develops AI-powered systems and applications.",
+      "lieu": "Boston",
+      "salaire": "100000",
+      "type": "Full-time"
     },
     {
       "id": "8",
-      "titre": "Enseignant de langue étrangère",
-      "description": "Enseignement de langues étrangères à des étudiants internationaux.",
-      "lieu": "Barcelone, Espagne",
-      "salaire": 40000,
-      "type": "Temps partiel"
-    },
-    {
-      "id": "9",
-      "titre": "Analyste de données",
-      "description": "Analyse et interprétation des données pour prendre des décisions commerciales.",
-      "lieu": "Toronto, Canada",
-      "salaire": 68000,
-      "type": "Temps plein"
-    },
-    {
-      "id": "10",
-      "titre": "Architecte d'intérieur",
-      "description": "Conception et aménagement d'espaces intérieurs pour divers projets.",
-      "lieu": "Milan, Italie",
-      "salaire": 60000,
-      "type": "Temps plein"
-    },
-    {
-      "id": "11",
-      "titre": "Ingénieur en génie civil",
-      "description": "Conception et gestion de projets de construction.",
-      "lieu": "Toronto, Canada",
-      "salaire": 75000,
-      "type": "Temps plein"
-    },
-    {
-      "id": "12",
-      "titre": "Développeur mobile",
-      "description": "Création d'applications mobiles pour différents systèmes d'exploitation.",
-      "lieu": "San Francisco, USA",
-      "salaire": 80000,
-      "type": "Temps plein"
-    },
-    {
-      "id": "13",
-      "titre": "Gestionnaire de projet",
-      "description": "Supervision et coordination de projets de grande envergure.",
-      "lieu": "Londres, Royaume-Uni",
-      "salaire": 85000,
-      "type": "Temps plein"
-    },
-    {
-      "id": "14",
-      "titre": "Designer industriel",
-      "description": "Conception de produits innovants pour diverses industries.",
-      "lieu": "Berlin, Allemagne",
-      "salaire": 70000,
-      "type": "Temps plein"
-    },
-    {
-      "id": "15",
-      "titre": "Consultant en gestion",
-      "description": "Fourniture de conseils en matière de gestion et de stratégie d'entreprise.",
-      "lieu": "Paris, France",
-      "salaire": 90000,
-      "type": "Temps plein"
-    },
-    {
-      "id": "16",
-      "titre": "Infirmier",
-      "description": "Fourniture de soins infirmiers professionnels dans divers environnements de soins de santé.",
-      "lieu": "Sydney, Australie",
-      "salaire": 60000,
-      "type": "Temps plein"
-    },
-    {
-      "id": "17",
-      "titre": "Analyste de sécurité informatique",
-      "description": "Évaluation des risques et mise en œuvre de mesures de sécurité informatique.",
-      "lieu": "New York, USA",
-      "salaire": 95000,
-      "type": "Temps plein"
-    },
-    {
-      "id": 0,
-      "titre": "the new job",
-      "description": "Coordination et gestion de projets informatiques",
-      "lieu": "USA",
-      "salaire": 20000,
-      "type": "temps plein"
+      "titre": "Software Quality Assurance Engineer",
+      "description": "Tests software applications to ensure they meet quality standards.",
+      "lieu": "Seattle",
+      "salaire": "80000",
+      "type": "Remote or On-site"
     }
   ]
 }
