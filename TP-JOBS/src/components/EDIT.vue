@@ -8,16 +8,16 @@
             <label><span><b>The type : <input v-model="updatedData.type" type="text"></b></span><br><br><br></label>
        </div><br><br>
        <button class="redirect"@click="func()">Save</button>
+       <router-link to="/Home" class="no-underline"><button class="redirect1">Annulate</button></router-link>
   </template>
   
   <script>
-  import axios from 'axios';
   export default {
     name: 'EDIT',
-    props : ["jobs"],
     data() {
      return {
         updatedData :{ 
+        id : this.jobId,
         titre : "",
         description : "",
         lieu : "",
@@ -29,6 +29,7 @@
   },
     methods : {
         func(){
+        console.log(this.jobId);
         if(this.updatedData.titre == "")
         alert(" You should fill the title");
         else if (this.updatedData.description == "")
@@ -40,7 +41,7 @@
         else if (this.updatedData.type == "")
         alert(" You should fill the type");
         else {
-            fetch('http://localhost:3000/emplois/' + this.jobId, {
+            fetch('http://localhost:4000/emplois/' + this.jobId, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -72,6 +73,21 @@
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px;
+    }
+    .redirect1{
+        background-color: green; 
+        color: #fff; /* White text */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 20px;
+        text-decoration: none;
+    }
+    .no-underline{
+        text-decoration: none;
+        color: white;
     }
   </style>
   
