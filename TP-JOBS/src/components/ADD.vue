@@ -1,7 +1,7 @@
 <template>
     <div class="details">
      <p style="font-size: 30px;"><b>Give the informations  for the job you want to add : <span></span></b></p><br><br>
-        <label><span><b>The ID : <input v-model="updatedData.id" type="number"></b></span><br><br><br></label>
+        <label><span><b>The ID : <input v-model="updatedData.id" type="text"></b></span><br><br><br></label>
          <label><span><b>The title : <input v-model="updatedData.titre" type="text"></b></span><br><br><br></label>
          <label><span><b> The description : <input v-model="updatedData.description" type="text"></b></span><br><br><br></label>
          <label><span><b>The place : <input v-model= "updatedData.lieu" type="text"></b></span><br><br><br></label>
@@ -9,6 +9,8 @@
          <label><span><b>The type : <input v-model="updatedData.type" type="text"></b></span><br><br><br></label>
     </div><br><br>
     <button class="redirect"@click="func()">Save</button>
+    <router-link to="/Home" class="no-underline"><button  class="redirect1">Annulate</button></router-link>
+
 </template>
 
 <script>
@@ -17,7 +19,7 @@ export default {
  data() {
   return {
      updatedData :{ 
-     id : 0,
+     id : "",
      titre : "",
      description : "",
      lieu : "",
@@ -41,7 +43,7 @@ export default {
      else if (this.updatedData.type == "")
      alert(" You should fill the type");
      else {
-         fetch('http://localhost:3000/emplois/', {
+         fetch('http://localhost:4000/emplois/', {
              method: 'POST',
              headers: {
                  'Content-Type': 'application/json'
@@ -82,4 +84,8 @@ export default {
      cursor: pointer;
      font-size: 16px;
  }
+ .no-underline{
+        text-decoration: none;
+        color: white
+    }
 </style>
