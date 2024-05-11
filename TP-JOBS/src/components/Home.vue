@@ -1,6 +1,6 @@
 <template>
-    <p style="font-size: 30px;"><b>Tap on the job to see more details </b> </p>
-    <div style="margin-left: 0px;width: 14%;"><button class="add_but" @click="func()"><span><b>+</b></span> ADD JOB</button></div><br>
+    <p style="font-size: 30px;"><b>Tap on the id of the  job to see more details </b> </p>
+    <div style="margin-left: 0px;width: 14%;"><span><b></b></span><router-link class="no-underline" to="/ADD"><button class="add_but">+ADD JOB</button></router-link></div><br>
     <table>
         <tr>
             <th id="up_th">ID</th>
@@ -9,9 +9,7 @@
             <th id="up_th">Edit the job</th>
             <th id="up_th">Delete the job</th>
         </tr>
-        <tr v-for=" job in jobs">
-         <SHOW :job = "job"></SHOW>
-        </tr>
+         <SHOW></SHOW>
     </table>
     
 </template>
@@ -29,16 +27,7 @@ components :{
   SHOW
 },
 methods : {
-    func(){
-        this.$router.push({ name: 'ADD' }); 
-    }
-},
-mounted(){
-        fetch('http://localhost:3000/emplois')
-        .then(response => response.json())
-        .then(data => this.jobs = data)
-        .catch(error => console.log(error.message))
-    }
+}
 }
 </script>
   
