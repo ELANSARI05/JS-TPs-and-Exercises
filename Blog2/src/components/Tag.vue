@@ -94,6 +94,7 @@
   #article-title1 {
     color: rgb(10, 10, 131);
     text-decoration: double;
+    font-size: 17px
   }
   </style>
   
