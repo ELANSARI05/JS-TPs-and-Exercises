@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container3">
       <div class="list">
         <p style="font-size: 30px;"><b>List of articles</b></p>
         <table>
@@ -103,7 +103,7 @@ background-color: #3498db; /* Blue color */
 .tag{
     width: 45%
 }
-.container {
+.container3 {
     display: flex
 }
 .list{
