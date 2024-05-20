@@ -1,17 +1,19 @@
-import firebase  from 'firebase/app'
-
-import 'firebase/firestore'
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCx9wPMGlQSsBnqnTF1mYYooVpa1jPR4vk",
-    authDomain: "tp6-forum.firebaseapp.com",
-    projectId: "tp6-forum",
-    storageBucket: "tp6-forum.appspot.com",
-    messagingSenderId: "988720251378",
-    appId: "1:988720251378:web:d3b75fd10223088cbfab6b"
-  };
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
-  
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
+
 const projectFirestore = firebase.firestore();
-export {projectFirestore}
+const projectAuth = firebase.auth();
+
+export { projectFirestore, projectAuth };
