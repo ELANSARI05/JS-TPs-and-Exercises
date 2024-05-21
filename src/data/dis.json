@@ -1,0 +1,28 @@
+{
+    "discussions": {
+      "discussion1": {
+        "title": "How to learn Vue.js?",
+        "content": "I am new to Vue.js and would like some advice on the best resources and practices for learning it.",
+        "category": "Technology",
+        "createdBy": "user1",
+        "createdAt": "2024-05-20T12:00:00Z",
+        "updatedAt": "2024-05-20T12:00:00Z",
+        "replies": [
+          "reply1",
+          "reply2"
+        ]
+      },
+      "discussion2": {
+        "title": "Best practices for healthy living?",
+        "content": "Can anyone share tips and best practices for maintaining a healthy lifestyle?",
+        "category": "Health",
+        "createdBy": "user2",
+        "createdAt": "2024-05-20T13:00:00Z",
+        "updatedAt": "2024-05-20T13:00:00Z",
+        "replies": [
+          "reply3"
+        ]
+      }
+    }
+  }
+  

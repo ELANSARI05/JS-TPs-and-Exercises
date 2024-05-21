@@ -1,47 +1,39 @@
 <template>
-    <div class="container mt-5">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <b-card title="Login" class="text-center">
-            <b-form @submit.prevent="login">
-              <b-form-group label="Email address" label-for="email">
-                <b-form-input
-                  id="email"
-                  type="email"
-                  v-model="email"
-                  required
-                  placeholder="Enter email"
-                ></b-form-input>
-              </b-form-group>
-              <b-form-group label="Password" label-for="password">
-                <b-form-input
-                  id="password"
-                  type="password"
-                  v-model="password"
-                  required
-                  placeholder="Password"
-                ></b-form-input>
-              </b-form-group>
-              <b-button type="submit" variant="primary" block>Login</b-button>
-            </b-form>
-            <b-alert
-              variant="danger"
-              show
-              dismissible
-              v-if="error"
-              class="mt-3"
+    <div class="container">
+      <div class="login-form">
+        <h2>Login</h2>
+        <form @submit.prevent="login">
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              type="email"
+              v-model="email"
+              required
+              placeholder="Enter email"
             >
-              {{ error }}
-            </b-alert>
-            <router-link to="/signup" class="d-block mt-3">Don't have an account? Sign up</router-link>
-          </b-card>
-        </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              v-model="password"
+              required
+              placeholder="Enter password"
+            >
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <p v-if="error" class="error">{{ error }}</p>
+        <button class="google-button" @click="signInWithGoogle">Sign In with Google</button>
+        <router-link to="/register">Don't have an account? Sign up</router-link>
       </div>
     </div>
   </template>
   
   <script>
-  import { projectAuth } from '../config';
+  import { projectAuth, googleProvider } from '../firebase/config';
   
   export default {
     name: "Login",
@@ -56,10 +48,19 @@
       async login() {
         try {
           await projectAuth.signInWithEmailAndPassword(this.email, this.password);
-          this.$router.push("/");
+          this.$router.push("/home");
         } catch (error) {
           this.error = "Invalid email or password. Please try again.";
           console.error("Error logging in:", error);
+        }
+      },
+      async signInWithGoogle() {
+        try {
+          await projectAuth.signInWithPopup(googleProvider);
+          this.$router.push("/home");
+        } catch (error) {
+          this.error = "Error signing in with Google. Please try again.";
+          console.error("Error signing in with Google:", error);
         }
       }
     }
@@ -68,7 +69,91 @@
   
   <style>
   .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .login-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto; /* Center the form horizontally */
+  }
+  
+  .login-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .google-button {
+    margin-top: 10px;
+    background-color: #db4437;
+  }
+  
+  .google-button:hover {
+    background-color: #c33d2e;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+  }
+  
+  a:hover {
+    text-decoration: underline;
   }
   </style>
   

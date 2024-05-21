@@ -17,7 +17,7 @@
 import { projectFirestore } from '../firebase/config';
 
 export default {
-  name: 'DiscussionList',
+  name: 'mydiscussion',
   props: {
     userId: {
       type: String,
