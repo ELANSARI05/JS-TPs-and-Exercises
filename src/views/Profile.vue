@@ -1,12 +1,11 @@
 <template>
     <div class="profile">
-      <div class="header">
+      <div style="margin-left: 35%;text-decoration:solid" class="header">
         <h1>User Profile</h1>
-        <button class="btn btn-danger btn-sm" @click="signOut">Sign Out</button>
       </div>
       <div class="user-info">
         <div class="avatar">
-          <img :src="userAatar" alt="User Avatar" width="120px">
+          <a :href="userAatar"><img :src="userAatar" alt="User Avatar" width="120px"></a>
         </div>
         <div class="details">
           <p><strong>Email:</strong> {{ userEmail }}</p>
@@ -16,6 +15,8 @@
         </div>
       </div>
     </div>
+    <button  style="width: 10%;height: 45px;font-size: 15px;margin-left: 40%" class="btn btn-primary btn-sm" @click="goHome">Back to home</button><br><br>
+    <button style="width: 10%;margin-left: 40%" class="btn btn-danger btn-sm" @click="signOut">Sign Out</button>
   </template>
   
   <script>
@@ -63,7 +64,10 @@
         } catch (error) {
           console.error('Error signing out:', error);
         }
-      }
+      },
+      goHome() {
+      this.$router.push('/home');
+    }
     }
   };
   </script>
