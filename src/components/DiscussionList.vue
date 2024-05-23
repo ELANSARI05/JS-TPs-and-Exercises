@@ -1,14 +1,15 @@
 <template>
     <b-container class="mt-4">
-      <h2 class="text-primary">All Discussions</h2>
+      <h2 class="text-primary"> {{ yourdisc ? 'Your Discussions' : 'All Discussions' }}</h2>
       <b-list-group>
-        <div v-for="discussion in filteredDiscussions" :key="discussion.id" class="discussion-item">
-          <router-link  :to="{ name: 'Discussion', params: { id: discussion.id ,userId :userId } }" class="discussion-link">
-            <b-list-group-item class="discussion-card">
-              {{ discussion.title }}
-            </b-list-group-item>
-          </router-link>
-        </div>
+        <div v-for="discussion in   yourdisc ?  filterYourDiscussions :filteredDiscussions  " :key="discussion.id" class="discussion-item">
+            <router-link :to="{ name: 'Discussion', params: { id: discussion.id, userId: userId } }" class="discussion-link">
+                <b-list-group-item class="discussion-card">
+                {{ discussion.title }}
+                </b-list-group-item>
+            </router-link>
+            </div>
+
       </b-list-group>
     </b-container>
   </template>
@@ -26,11 +27,16 @@ export default {
     selectedCategory: {
       type: String,
       default: null
-    }
+    },
+    yourdisc: {
+    type: Boolean,
+    default: null
+  }
   },
   data() {
     return {
       discussions: [],
+      yourdiscussion:[]
     };
   },
   computed: {
@@ -40,8 +46,19 @@ export default {
       } else {
         return this.discussions;
       }
-    }
+    },
+    filterYourDiscussions() {
+  if (this.yourdisc && !this.selectedCategory) {
+    return this.discussions.filter(discussion => discussion.createdBy === this.userId);
+  } else if (this.yourdisc && this.selectedCategory) {
+    return this.discussions.filter(discussion => discussion.createdBy === this.userId && discussion.category === this.selectedCategory);
+  } else {
+    console.log("frifgioeergj")
+  }
+},
+
   },
+  
   async mounted() {
     try {
       let res = await projectFirestore.collection('Discussions').get();
