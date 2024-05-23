@@ -16,7 +16,7 @@
                   <div class="reply-content">
                     <span class="reply-text">{{ func(rep) }}</span>
                     <i 
-                      v-if="hoveredRep === rep"
+                      v-if="hoveredRep == rep && userId ==discussion.createdBy "
                       class="material-icons delete-icon"
                       @click="deleteReply(rep)"
                     >
