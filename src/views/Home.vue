@@ -2,15 +2,21 @@
   <div class="home">
     <div class="header">
       <div style="margin-left: 17px">
-        <router-link style="text-decoration: none; font-size: 20px; color: blue;" to="/profile">
+        <router-link to="/profile" style="text-decoration: none; font-size: 20px; color: blue;">
           <img :src="userAatar" alt="" width="40px">
           Your Profile
         </router-link>
       </div>
-      <div style="margin-left: 0%;">
+      <div>
         <h1>Welcome, {{ userName }}</h1>
-      </div><br>
+      </div>
     </div>
+    
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search..." v-model="search">
+      <button class="search-button" @click="showSearch">🔍</button>
+    </div>
+    
     <div class="container2">
       <div class="content">
         <div class="categories">
@@ -43,22 +49,31 @@
           <span class="notification-count">{{ notifcalc() }}</span>
         </div>
       </div>
+      
       <div class="discussions">
-        <component :is="currentComponent" :userId="userId" :selectedCategory="selectedCategory" :yourdisc="yourdisc" @hide-notifications="hideNotifications" />
+        <component :is="currentComponent" 
+                   :userId="userId" 
+                   :selectedCategory="selectedCategory" 
+                   :yourdisc="yourdisc" 
+                   @hide-notifications="hideNotifications" 
+                   :discussions="discussions" 
+                   :str="search" />
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import pic from '../pic.webp';
 import { projectAuth, projectFirestore } from '../firebase/config';
 import DiscussionList from '../components/DiscussionList.vue';
 import Notification from '../components/Notification.vue';
+import Navbar from '../components/Navbar.vue';
 
 export default {
   name: 'Home',
-  components: { DiscussionList, Notification },
+  components: { DiscussionList, Notification, Navbar },
   data() {
     return {
       userId: null,
@@ -72,7 +87,10 @@ export default {
       userAatar: "",
       yourdisc: false,
       showingNotifications: false,
-      replies: []
+      replies: [],
+      search: '',
+      search_comp: false,
+      show_ele: false
     };
   },
   async mounted() {
@@ -91,7 +109,13 @@ export default {
   },
   computed: {
     currentComponent() {
-      return this.showingNotifications ? 'Notification' : 'DiscussionList';
+      if (this.showingNotifications && !this.search_comp) {
+        return 'Notification';
+      } else if (!this.showingNotifications && this.search_comp) {
+        return 'Navbar';
+      } else {
+        return 'DiscussionList';
+      }
     }
   },
   created() {
@@ -112,7 +136,6 @@ export default {
           this.$router.push('/login');
         }
       }
-
       this.fetchDiscussions();
     });
   },
@@ -125,6 +148,11 @@ export default {
       } catch (err) {
         console.error(err.message);
       }
+    },
+    showSearch() {
+      this.search_comp = true;
+      this.showingNotifications = false;
+      console.log(this.search_comp)
     },
     extractCategories() {
       const categoriesSet = new Set();
@@ -141,7 +169,7 @@ export default {
     toggleCategories() {
       this.showCategories = !this.showCategories;
       this.showingNotifications = false;
-
+      this.search_comp = false;
     },
     toggleYourDiscussions() {
       this.yourdisc = !this.yourdisc;
@@ -152,7 +180,7 @@ export default {
         this.fetchDiscussions();
       }
       this.showingNotifications = false;
-
+      this.search_comp = false;
     },
     goToNewDiscussion() {
       this.$router.push('/new-discussion');
@@ -173,6 +201,7 @@ export default {
     },
     showNotifications() {
       this.showingNotifications = true;
+      this.search_comp = false;
     },
     hideNotifications() {
       this.showingNotifications = false;
@@ -198,6 +227,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 .container2 {
@@ -302,5 +332,44 @@ img {
 h1 {
   font-size: 28px;
   margin-bottom: 20px;
+}
+
+/* Container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Field */
+.search-input {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+    font-size: 16px;
+}
+
+/* Search Button */
+.search-button {
+    padding: 10px 20px;
+    border-radius: 0 25px 25px 0;
+    background-color: transparent;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 16px;
+    width: 10%;
+}
+
+.search-button:hover {
+    background-color: #f0f0f0;
 }
 </style>
