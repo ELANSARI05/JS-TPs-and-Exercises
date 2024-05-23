@@ -28,6 +28,12 @@ const routes = [
     props: true
   },
   {
+    path: '/mydisc/:id/:userId',
+    name: 'Discussion',
+    component: Discussion,
+    props: true
+  },
+  {
     path: '/',
     name: 'Login',
     component: Login
